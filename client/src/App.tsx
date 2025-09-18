@@ -5,12 +5,22 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useEffect } from "react";
 import Home from "@/pages/Home";
+import Weather from "@/pages/Weather";
+import CropAdvisory from "@/pages/CropAdvisory";
+import MandiPrices from "@/pages/MandiPrices";
+import GovernmentSchemes from "@/pages/GovernmentSchemes";
+import DiseaseScanner from "@/pages/DiseaseScanner";
 import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/weather" component={Weather} />
+      <Route path="/crop-advisory" component={CropAdvisory} />
+      <Route path="/mandi-prices" component={MandiPrices} />
+      <Route path="/government-schemes" component={GovernmentSchemes} />
+      <Route path="/disease-scanner" component={DiseaseScanner} />
       <Route component={NotFound} />
     </Switch>
   );
