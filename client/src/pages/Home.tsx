@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
+import Navbar from "@/components/Navbar";
 import ChatMessage from "@/components/ChatMessage";
 import ChatInput from "@/components/ChatInput";
 import QuickActions from "@/components/QuickActions";
@@ -21,7 +21,7 @@ interface Message {
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -32,7 +32,7 @@ export default function Home() {
     scrollToBottom();
   }, [messages, isTyping]);
 
-  // Mock AI responses //todo: remove mock functionality
+  // Mock AI responses 
   const mockResponses = {
     weather: "Based on your location, here's the 7-day forecast: Expect mild temperatures around 25-30°C with occasional showers in the next 3 days. Perfect conditions for watering crops. Humidity will be 65-70%, ideal for most crops. No extreme weather alerts for your area.",
     "mandi-prices": "Current mandi prices in your area: Wheat ₹2,150/quintal (↑5%), Rice ₹1,950/quintal (→), Sugarcane ₹385/quintal (↓2%), Tomato ₹35/kg (↑12%), Onion ₹28/kg (→). Prices updated 2 hours ago from nearest APMCs.",
@@ -108,8 +108,11 @@ export default function Home() {
 
   return (
     <div className="flex flex-col h-screen bg-background" data-testid="page-home">
-      <Header onMenuClick={() => setSidebarOpen(true)} />
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Header />
+      <Navbar 
+        onMobileMenuToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        isMobileMenuOpen={isMobileMenuOpen}
+      />
       
       <main className="flex-1 overflow-hidden">
         <div className="h-full flex flex-col max-w-4xl mx-auto">

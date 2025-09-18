@@ -35,15 +35,6 @@ export default function Header({ onMenuClick }: HeaderProps) {
       <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
         {/* Left side - Logo and title */}
         <div className="flex items-center gap-3">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={onMenuClick}
-            className="md:hidden"
-            data-testid="button-menu"
-          >
-            <Menu className="w-5 h-5" />
-          </Button>
           
           <div className="flex items-center gap-3">
             <img 

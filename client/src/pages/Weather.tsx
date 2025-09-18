@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
+import Navbar from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 
 export default function Weather() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Hardcoded weather data //todo: remove mock functionality
   const currentWeather = {
@@ -84,8 +84,11 @@ export default function Weather() {
 
   return (
     <div className="flex flex-col h-screen bg-background" data-testid="page-weather">
-      <Header onMenuClick={() => setSidebarOpen(true)} />
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Header />
+      <Navbar 
+        onMobileMenuToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        isMobileMenuOpen={isMobileMenuOpen}
+      />
       
       <main className="flex-1 overflow-y-auto p-4 space-y-6">
         <div className="max-w-7xl mx-auto">
